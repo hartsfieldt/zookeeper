@@ -1,5 +1,7 @@
 // To require the express module
 const express = require("express");
+// Default Port or use our selected 3001 port
+const PORT = process.env.PORT || 3001;
 // To require the express() - port
 const app = express();
 // A route that a front end can request data from
@@ -56,6 +58,6 @@ app.get("/api/animals", (req, res) => {
 });
 
 // To listen to the port
-app.listen(3001, () => {
-    console.log(`API server now on port 3001!`);
+app.listen(PORT, () => {
+    console.log(`API server now on port ${PORT}!`);
   });
