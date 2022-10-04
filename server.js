@@ -1,15 +1,10 @@
-// To require the express module
+
 const express = require("express");
-// Default Port or use our selected 3001 port
-const PORT = process.env.PORT || 3001;
-// To require the express() - port
-const app = express();
-// A route that a front end can request data from
 const { animals } = require("./data/animals");
 
+const PORT = process.env.PORT || 3001;
+const app = express();
 
-
-// This function will take in req.query as an argument and filter through the animals accordingly, returning the new filtered array.
 function filterByQuery(query, animalsArray) {
   let personalityTraitsArray = [];
   let filteredResults = animalsArray;
@@ -47,7 +42,10 @@ function filterByQuery(query, animalsArray) {
   return filteredResults;
 }
 
-
+function findById(id, animalsArray) {
+  const results = animalsArray.filter(animal => animal.id === id)[0];
+  return results;
+}
 // To add a route
 app.get("/api/animals", (req, res) => {
   let results = animals;
@@ -55,6 +53,15 @@ app.get("/api/animals", (req, res) => {
     results = filterByQuery(req.query, results);
   }
   res.json(results);
+});
+// TO find an animal by a specific id
+app.get("/api/animals/:id", (req, res) => {
+  const result = findById(req.params.id, animals);
+  if (result) {
+  res.json(result);
+} else {
+  res.send(404);
+}
 });
 
 // To listen to the port
