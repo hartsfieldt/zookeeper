@@ -6,7 +6,6 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
-
 app.use(express.json());
 
 function filterByQuery(query, animalsArray) {
@@ -50,6 +49,15 @@ function findById(id, animalsArray) {
   const results = animalsArray.filter(animal => animal.id === id)[0];
   return results;
 }
+
+function createNewAnimal(body, animalsArray) {
+  console.log(body);
+
+
+  return body;
+}
+
+
 // To add a route
 app.get("/api/animals", (req, res) => {
   let results = animals;
@@ -68,8 +76,9 @@ app.get("/api/animals/:id", (req, res) => {
 }
 });
 
-app.post("./api/animals", (req, res) => {
-  console.log(req.body);
+app.post("/api/animals", (req, res) => {
+   // set id based on what the next index of the array will be
+  req.body.id = animals.length.toString();
   res.json(req.body);
 });
 
