@@ -36,15 +36,16 @@ const handleAnimalFormSubmit = (event) => {
     },
     body: JSON.stringify(animalObject),
   })
-    .then(response => {
+    .then((response) => {
       if (response.ok) {
         return response.json();
       }
       alert("Error: " + response.statusText);
     })
-    .then(postResponse => {
+    .then((postResponse) => {
       console.log(postResponse);
-  alert("Thank you for adding an animal!");
-});
+      alert("Thank you for adding an animal!");
+    });
+};
 
 $animalForm.addEventListener("submit", handleAnimalFormSubmit);
