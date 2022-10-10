@@ -14,7 +14,3 @@ app.use("/", htmlRoutes);
 app.listen(PORT, () => {
   console.log(`API server now on port ${PORT}!`);
 });
-
-// const { animals } = require("./data/animals");
-// const fs = require("fs");
-// const path = require("path");
